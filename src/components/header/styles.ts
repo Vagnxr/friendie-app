@@ -17,6 +17,7 @@ export const Line = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  overflow: unset;
 
   flex: 1;
   height: 80px;
@@ -45,7 +46,6 @@ export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  position: fixed;
 `;
 
 export const Box = styled.div<IBoxStyles>`
@@ -55,7 +55,6 @@ export const Box = styled.div<IBoxStyles>`
   position: relative;
   padding: 12px;
   height: 100%;
-
 
   ${(props) =>
     props.flex &&
@@ -164,6 +163,7 @@ export const Popup = styled.div`
   @media (max-width: 585px) {
     display: flex;
     width: 15rem;
+    height: 100%;
     position: absolute;
     top: 4rem;
     background: var(--background);
@@ -187,7 +187,8 @@ export const Menu = styled.div<IMenuStyles>`
   z-index: 10;
   top: calc(100% - 1px);
   transform: translateX(10rem);
-  transition: all ease 1s;
+  animation: ${FadeBlur} linear forwards 0.5s;
+  transition: all ease 0.5s;
 
   border: 1px solid var(--gray);
   border-radius: 2px;
@@ -207,8 +208,9 @@ export const Menu = styled.div<IMenuStyles>`
     height: 4rem;
     border-radius: 2px 0px 0px 2px;
 
-    p {
+    a {
       color: var(--white);
+      text-decoration: none;
       margin-left: 0.5rem;
       cursor: pointer;
       transition: all ease 0.2s;
@@ -223,5 +225,11 @@ export const Menu = styled.div<IMenuStyles>`
     props.active &&
     css`
       transform: translateX(-2rem);
+    `}
+
+  ${(props) =>
+    !props.active &&
+    css`
+      display: none;
     `}
 `;

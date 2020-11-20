@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Container,
   Box,
@@ -11,27 +11,20 @@ import {
 } from "./styles";
 import { Link } from "react-router-dom";
 import { FiAlignRight, FiHeadphones, FiSearch } from "react-icons/fi";
-import LogoFriendie from '../../assets/logo.png';
+import LogoFriendie from "../../assets/logo.png";
+import moment from 'moment';
 
 const Header: React.FC = () => {
-  const [timer, setTimer] = useState<string>("");
   const [showInput, setShowInput] = useState<boolean>(false);
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setTimer("bateu");
-    }, 10000);
-  }, [timer]);
+  const date = moment.utc().format('LL');
 
   return (
     <Container>
       <Line>
         <Box>
-          <img
-            alt="Logo"
-            src={LogoFriendie}
-          />
+          <img alt="Logo" src={LogoFriendie} />
         </Box>
 
         <Box className="menu">
@@ -69,21 +62,21 @@ const Header: React.FC = () => {
             }}
             size={30}
           />
-          <Menu active={showMenu}>
-            <span>
-              <p>Home</p>
-            </span>
-            <span>
-              <p>Media</p>
-            </span>
-            <span>
-              <p>Social Media</p>
-            </span>
-          </Menu>
+            <Menu active={showMenu}>
+              <span>
+                <Link to="/">Home</Link>
+              </span>
+              <span>
+                <Link to="/media" >Media</Link>
+              </span>
+              <span>
+                <Link to="social-media">Social Media</Link>
+              </span>
+            </Menu>
         </Box>
       </Line>
 
-      <Footer>{timer && <p>{timer}</p>}</Footer>
+      <Footer><p>{date}</p></Footer>
     </Container>
   );
 };
