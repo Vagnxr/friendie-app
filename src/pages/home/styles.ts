@@ -69,7 +69,7 @@ export const Card = styled.div`
   }
 
   img {
-    height: 200px;
-    width: 200px;
+    height: 60%;
+    width: 60%;
   }
 `;

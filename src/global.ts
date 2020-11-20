@@ -41,7 +41,6 @@ body {
 html {
   display: flex;
   width: 100%;
-  height: 100%;
 }
 
 input, button, textarea {
